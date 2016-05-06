@@ -38,8 +38,9 @@ public class LoaderGPX extends Task<TrackData> {
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         JAXBElement<Object> root = (JAXBElement<Object>) unmarshaller.unmarshal(file);
         GpxType gpx = (GpxType) root.getValue();
-        if (gpx != null)
-            trackData = new TrackData(new Track(gpx.getTrk().get(0)));
+        if (gpx != null){
+            System.out.println(gpx.getTrk().size());
+            trackData = new TrackData(new Track(gpx.getTrk().get(0)));}
         Platform.runLater(() -> stage.getScene().setCursor(Cursor.DEFAULT));
         return trackData;
     }
