@@ -8,12 +8,12 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="KeepMyTrack.jar" size="2855" download="eager" />
-    <jar href="lib\jGPX.jar" size="63961" download="eager" />
+    <jar href="KeepMyTrack.jar" size="7039" download="eager" />
+    <jar href="lib/jGPX.jar" size="63961" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="KeepMyTrack" >
     <param name="requiredFXVersion" value="8.0+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="800" height="600" main-class="app.KeepMyTrack"  name="KeepMyTrack" />
+  <jfx:javafx-desc  width="800" height="600" main-class="app.KeepMyTrackApp"  name="KeepMyTrack" />
   <update check="always"/>
 </jnlp>
