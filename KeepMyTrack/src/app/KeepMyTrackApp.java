@@ -13,16 +13,16 @@ import presentation.controller.MainViewController;
  * @author JoseManuel
  */
 public class KeepMyTrackApp extends Application {
-
+    
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/presentation/view/MainView.fxml"));
         AnchorPane root = (AnchorPane) loader.load();
-        MainViewController mvc = loader.getController();
-        mvc.initStage(stage);
+        MainViewController controller = loader.<MainViewController>getController();
+        controller.initStage(stage);
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("KeepMyTrack");
+        stage.setTitle("Keep my track");
         stage.show();
     }
 
