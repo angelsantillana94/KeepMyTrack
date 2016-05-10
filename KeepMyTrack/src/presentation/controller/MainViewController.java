@@ -3,6 +3,7 @@ package presentation.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -22,6 +23,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.xml.bind.JAXBException;
+import lib.TimeUtil;
 import model.Activity;
 
 /**
@@ -81,7 +83,20 @@ public class MainViewController implements Initializable {
     }
     
     private void loadListeners(){
-        
+        tableActivities.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                DecimalFormat round = (DecimalFormat) DecimalFormat.getInstance();
+                round.applyPattern("#.##");
+                Activity activity = tableActivities.getSelectionModel().getSelectedItem();
+                labelNameActivity.setText(activity.getName());
+                duration.setText(TimeUtil.secondsToStringFormat(activity.getTotalDuration().getSeconds()));
+                movingDuration.setText(TimeUtil.secondsToStringFormat(activity.getMovingTime().getSeconds()));
+                distance.setText(round.format(activity.getTotalDistance()/1000) + " Km");
+                avgSpeed.setText(round.format(activity.getAverageSpeed()*3600/1000) + " Km/h");
+                maxSpeed.setText(round.format(activity.getMaxSpeed()*3600/1000) + " Km/h");
+                avgFC.setText(activity.getMaxHeartrate() + " ppm");
+            }
+        });
     }
 
     @Override
