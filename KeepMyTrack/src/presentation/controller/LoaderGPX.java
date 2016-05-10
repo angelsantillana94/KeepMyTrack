@@ -2,6 +2,7 @@ package presentation.controller;
 
 import java.io.File;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.scene.Cursor;
 import javafx.stage.Stage;
@@ -12,24 +13,26 @@ import jgpx.model.analysis.TrackData;
 import jgpx.model.gpx.Track;
 import jgpx.model.jaxb.GpxType;
 import jgpx.model.jaxb.TrackPointExtensionT;
+import model.Activity;
 
 /**
  *
  * @author Jose Manuel
  */
 public class LoaderGPX extends Task<TrackData> {
-    
+
     private final File file;
     private final Stage stage;
-    private TrackData trackData;
-    
-    public LoaderGPX(File file, Stage stage){
+    private ObservableList<Activity> listActivities;
+    private Activity activity;
+
+    public LoaderGPX(File file, Stage stage, ObservableList<Activity> listActivities) {
         this.file = file;
         this.stage = stage;
-        this.initTask();
+        this.listActivities = listActivities;
     }
-    
-    private void initTask(){
+
+    public void initTask() {
         Thread thread = new Thread(this);
         thread.setDaemon(true);
         thread.start();
@@ -37,25 +40,27 @@ public class LoaderGPX extends Task<TrackData> {
 
     @Override
     protected TrackData call() throws Exception {
-        Platform.runLater(() -> stage.getScene().setCursor(Cursor.WAIT));
         JAXBContext jaxbContext = JAXBContext.newInstance(GpxType.class, TrackPointExtensionT.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         JAXBElement<Object> root = (JAXBElement<Object>) unmarshaller.unmarshal(file);
         GpxType gpx = (GpxType) root.getValue();
-        if (gpx != null)
-            trackData = new TrackData(new Track(gpx.getTrk().get(0)));
-        Platform.runLater(() -> stage.getScene().setCursor(Cursor.DEFAULT));
-        return trackData;
+        if (gpx != null) {
+            activity = new Activity(new Track(gpx.getTrk().get(0)));
+        }
+        return activity;
     }
 
     @Override
     protected void running() {
         super.running();
+        Platform.runLater(() -> stage.getScene().setCursor(Cursor.WAIT));
     }
 
     @Override
     protected void succeeded() {
         super.succeeded();
+        listActivities.add(activity);
+        Platform.runLater(() -> stage.getScene().setCursor(Cursor.DEFAULT));
     }
 
 }

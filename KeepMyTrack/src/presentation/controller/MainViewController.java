@@ -3,7 +3,11 @@ package presentation.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +22,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.xml.bind.JAXBException;
-import jgpx.model.analysis.TrackData;
+import model.Activity;
 
 /**
  *
@@ -26,18 +30,19 @@ import jgpx.model.analysis.TrackData;
  */
 public class MainViewController implements Initializable {
 
+    private final ObservableList<Activity> listActivities = FXCollections.observableArrayList(new ArrayList<Activity>());
     private Stage stage;
-    private TrackData trackData;
+
     @FXML
     private Button btnAdd;
     @FXML
     private Button btnDel;
     @FXML
-    private TableView<?> tableActivities;
+    private TableView<Activity> tableActivities;
     @FXML
-    private TableColumn<?, ?> nameActivity;
+    private TableColumn<Activity, String> nameActivity;
     @FXML
-    private TableColumn<?, ?> dateActivity;
+    private TableColumn<Activity, String> dateActivity;
     @FXML
     private Label distance;
     @FXML
@@ -70,24 +75,31 @@ public class MainViewController implements Initializable {
     private Button btnZones;
     @FXML
     private Label labelNameActivity;
-   
 
     public void initStage(Stage stage) {
         this.stage = stage;
     }
+    
+    private void loadListeners(){
+        
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        loadListeners();
+        nameActivity.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getName().toUpperCase()));
+        dateActivity.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getEndTime().toLocalDate().toString()));
+        tableActivities.setItems(listActivities);
     }
 
     @FXML
-    private void addActivity(ActionEvent event) throws JAXBException  {
+    private void addActivity(ActionEvent event) throws JAXBException {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(stage);
-        if (file == null) return; 
-        LoaderGPX gpx = new LoaderGPX(file, stage);
-        //System.out.println(trackData.getAverageHeight());
+        if (file == null) {
+            return;
+        }
+        new LoaderGPX(file, stage, listActivities).initTask();
     }
 
     @FXML
@@ -104,7 +116,7 @@ public class MainViewController implements Initializable {
             Scene scene = new Scene(root);
             newStage.setScene(scene);
             AltitudeViewController avc = loader.getController();
-            avc.initStage(newStage); 
+            avc.initStage(newStage);
             newStage.initModality(Modality.APPLICATION_MODAL);
             newStage.showAndWait();
         } catch (IOException e) {
@@ -119,6 +131,5 @@ public class MainViewController implements Initializable {
     @FXML
     private void showZones(ActionEvent event) {
     }
-
 
 }
