@@ -80,6 +80,8 @@ public class MainViewController implements Initializable {
     @FXML
     private Label labelNameActivity;
     @FXML
+    private Label labelDateTime;
+    @FXML
     private GridPane resume;
     
     public void initStage(Stage stage) {
@@ -87,7 +89,7 @@ public class MainViewController implements Initializable {
     }
     
     private void loadListeners() {
-        labelNameActivity.setText("Seleccione una actividad");
+        labelNameActivity.setText("¡Seleccione una actividad!");
         resume.setVisible(false);
         tableActivities.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
