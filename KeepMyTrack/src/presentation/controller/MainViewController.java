@@ -36,6 +36,7 @@ public class MainViewController implements Initializable {
     
     private final ObservableList<Activity> listActivities = FXCollections.observableArrayList(new ArrayList<Activity>());
     private Stage stage;
+    private Activity selectedActivity;
     
     @FXML
     private Button btnAdd;
@@ -82,18 +83,18 @@ public class MainViewController implements Initializable {
     @FXML
     private GridPane resume;
     
+    
+    
     public void initStage(Stage stage) {
         this.stage = stage;
     }
     
     private void loadListeners() {
-        labelNameActivity.setText("Seleccione una actividad");
-        resume.setVisible(false);
         tableActivities.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 resume.setVisible(true);
-                Activity activity = tableActivities.getSelectionModel().getSelectedItem();
-                updateResumeWith(new ActivityGroup(activity));
+                selectedActivity = tableActivities.getSelectionModel().getSelectedItem();
+                updateResumeWith(new ActivityGroup(selectedActivity));
             }
         });
     }
@@ -142,13 +143,13 @@ public class MainViewController implements Initializable {
     private void showAltitude(ActionEvent event) {
         try {
             Stage newStage = new Stage();
-            newStage.setTitle("Perfil del recorrido");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/presentation/view/AltitudeView.fxml"));
+            AltitudeViewController avc = loader.getController();
+            avc.initStage(newStage,selectedActivity);
             AnchorPane root = (AnchorPane) loader.load();
             Scene scene = new Scene(root);
+            newStage.setTitle("Perfil del recorrido");
             newStage.setScene(scene);
-            AltitudeViewController avc = loader.getController();
-            avc.initStage(newStage);
             newStage.initModality(Modality.APPLICATION_MODAL);
             newStage.showAndWait();
         } catch (IOException e) {
