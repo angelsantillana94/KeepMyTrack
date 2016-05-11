@@ -1,0 +1,10 @@
+
+.altitudeBackground {
+    -fx-background-color: #85D4F4;
+}
+
+.labelAltitude { 
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
