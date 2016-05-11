@@ -1,0 +1,73 @@
+/*
+.button {
+   -fx-background-color: #6B6B6C, #C7C8CA;
+   -fx-background-radius: 0%;
+   -fx-background-insets: 0, 1, 2;
+   -fx-font-family: "Helvetica";
+   -fx-text-fill: black;
+   -fx-font-size: 25px;
+}
+
+.button-op {
+   -fx-background-color: #6B6B6C, #F78D12;
+   -fx-background-radius: 0%;
+   -fx-background-insets: 0, 1, 2;
+   -fx-font-family: "Helvetica";
+   -fx-text-fill: #FEFEFE;
+   -fx-font-size: 25px;
+}
+
+ #box{
+ 	-fx-background-color: #6B6B6C, #202020;
+ 	-fx-background-radius: 0%;
+ 	-fx-font-family: "Helvetica";
+   -fx-text-fill: #FEFEFE;
+}
+*/
+
+.resumeValues{
+    -fx-text-fill: #FEFBFF;
+}
+
+.nameValues{
+    -fx-text-fill: #DFDFDF;
+     -fx-font: bold 12px "Arial";
+}
+
+.resumeBackground, .anchorPaneIzq{
+    -fx-background-color: #0097A4;
+}
+
+.tabPane{
+    -fx-background-color: #0097A4;
+    -fx-font: bold 14px "Arial";
+    
+}
+
+.tableView{
+    -fx-background-color: #0097A4;
+}
+
+.tableColumn{
+    
+}
+
+.button{
+    -fx-background-color: #F0AE05;
+    -fx-text-fill: #985712;
+    -fx-font: bold 14px "Arial";
+}
+
+.buttonAdd{
+    -fx-background-color: #34C643;
+    -fx-text-fill: #0B650D;
+    -fx-font: bold 14px "Arial";
+}
+
+.buttonDelete{
+    -fx-background-color: #FB6159;
+    -fx-text-fill: #7E0508;
+    -fx-font: bold 14px "Arial";
+}
+
+

@@ -21,6 +21,9 @@ public class KeepMyTrackApp extends Application {
         MainViewController mvc = loader.getController();
         mvc.initStage(stage);
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(
+                getClass().getResource("/presentation/view/resources/styles.css").toExternalForm()
+                        );
         stage.setScene(scene);
         stage.setTitle("KeepMyTrack");
         stage.show();
