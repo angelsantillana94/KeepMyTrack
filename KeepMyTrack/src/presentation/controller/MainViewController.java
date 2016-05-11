@@ -81,6 +81,8 @@ public class MainViewController implements Initializable {
     @FXML
     private Label labelNameActivity;
     @FXML
+    private Label labelDateTime;
+    @FXML
     private GridPane resume;
     
     

@@ -26,26 +26,25 @@
 */
 
 .resumeValues{
-    -fx-text-fill: #FEFBFF;
+    -fx-text-fill: #FBFBFB;
 }
 
 .nameValues{
-    -fx-text-fill: #DFDFDF;
+    -fx-text-fill: #0A496A;
      -fx-font: bold 12px "Arial";
 }
 
-.resumeBackground, .anchorPaneIzq{
-    -fx-background-color: #0097A4;
+.resumeBackground, .anchorPaneIzq {
+    -fx-background-color: #85D4F4;
 }
 
 .tabPane{
-    -fx-background-color: #0097A4;
+    -fx-background-color: #85D4F4;
     -fx-font: bold 14px "Arial";
-    
 }
 
 .tableView{
-    -fx-background-color: #0097A4;
+    -fx-background-color: #FBFBFB;
 }
 
 .tableColumn{
@@ -70,4 +69,39 @@
     -fx-font: bold 14px "Arial";
 }
 
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
 
+.tab-pane{
+    -fx-tab-min-width:90px;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+.tab-pane .tab{
+    -fx-background-color: #e6e6e6;
+}
+
+.tab-pane .tab:selected{
+    -fx-background-color: #0193C8;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #828282;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #FBFBFB;
+}
+
+.labelSeleccionaActividad{
+    -fx-text-fill: #FBFBFB;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
