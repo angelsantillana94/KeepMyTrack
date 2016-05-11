@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.AreaChart?>
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedAreaChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
@@ -14,14 +13,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" styleClass="altitudeBackground" stylesheets="@resources/altitudeStyles.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.AltitudeViewController">
    <children>
-      <AreaChart fx:id="areaChart" styleClass="altitudeBackground" title="Perfil del recorrido" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
+      <StackedAreaChart fx:id="areaChart" layoutX="76.0" layoutY="56.0" legendVisible="false" title="Perfil del recorrido" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
         <xAxis>
-          <CategoryAxis label="Distancia (Km)" />
+          <NumberAxis label="Distancia (Km)" side="BOTTOM" />
         </xAxis>
         <yAxis>
           <NumberAxis label="Altura (m)" side="LEFT" />
         </yAxis>
-      </AreaChart>
+      </StackedAreaChart>
       <Separator layoutX="118.0" layoutY="418.0" prefWidth="200.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
       <HBox alignment="CENTER" prefHeight="100.0" styleClass="altitudeBackground" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>

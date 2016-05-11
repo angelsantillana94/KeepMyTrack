@@ -36,7 +36,6 @@ public class MainViewController implements Initializable {
     
     private final ObservableList<Activity> listActivities = FXCollections.observableArrayList(new ArrayList<Activity>());
     private Stage stage;
-    private Activity selectedActivity;
     
     @FXML
     private Button btnAdd;
@@ -85,8 +84,6 @@ public class MainViewController implements Initializable {
     @FXML
     private GridPane resume;
     
-    
-    
     public void initStage(Stage stage) {
         this.stage = stage;
     }
@@ -94,8 +91,9 @@ public class MainViewController implements Initializable {
     private void loadListeners() {
         tableActivities.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
+                Activity selectedActivity = tableActivities.getSelectionModel().getSelectedItem();
+                labelDateTime.setText(selectedActivity.getStartTime().toLocalTime()+" "+selectedActivity.getStartTime().toLocalDate());
                 resume.setVisible(true);
-                selectedActivity = tableActivities.getSelectionModel().getSelectedItem();
                 updateResumeWith(new ActivityGroup(selectedActivity));
             }
         });
@@ -123,7 +121,7 @@ public class MainViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         loadListeners();
         nameActivity.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getName().toUpperCase()));
-        dateActivity.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getEndTime().toLocalDate().toString()));
+        dateActivity.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getStartTime().toLocalDate().toString()));
         tableActivities.setItems(listActivities);
     }
     
@@ -143,15 +141,16 @@ public class MainViewController implements Initializable {
     
     @FXML
     private void showAltitude(ActionEvent event) {
+        Activity activity = tableActivities.getSelectionModel().getSelectedItem();
         try {
             Stage newStage = new Stage();
+            newStage.setTitle("Perfil del recorrido");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/presentation/view/AltitudeView.fxml"));
-            AltitudeViewController avc = loader.getController();
-            avc.initStage(newStage,selectedActivity);
             AnchorPane root = (AnchorPane) loader.load();
             Scene scene = new Scene(root);
-            newStage.setTitle("Perfil del recorrido");
             newStage.setScene(scene);
+            AltitudeViewController controller = loader.<AltitudeViewController>getController();
+            controller.initStage(newStage,activity);  
             newStage.initModality(Modality.APPLICATION_MODAL);
             newStage.showAndWait();
         } catch (IOException e) {
