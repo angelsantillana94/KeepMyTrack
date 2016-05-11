@@ -7,6 +7,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -83,7 +84,7 @@ public class MainViewController implements Initializable {
     }
     
     private void loadListeners(){
-        tableActivities.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        tableActivities.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Activity> obs, Activity oldSelection, Activity newSelection) -> {
             if (newSelection != null) {
                 DecimalFormat round = (DecimalFormat) DecimalFormat.getInstance();
                 round.applyPattern("#.##");
@@ -95,6 +96,7 @@ public class MainViewController implements Initializable {
                 avgSpeed.setText(round.format(activity.getAverageSpeed()*3600/1000) + " Km/h");
                 maxSpeed.setText(round.format(activity.getMaxSpeed()*3600/1000) + " Km/h");
                 avgFC.setText(activity.getMaxHeartrate() + " ppm");
+                gainAltitude.setText(round.format(activity.getTotalAscent()) + " m");
             }
         });
     }
