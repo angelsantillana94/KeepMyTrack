@@ -1,14 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package presentation.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.StackedAreaChart;
+import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
+import jgpx.model.analysis.Chunk;
+import model.Activity;
 
 /**
  * FXML Controller class
@@ -17,16 +20,31 @@ import javafx.stage.Stage;
  */
 public class AltitudeViewController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    private Stage stage;
+    private Activity activity;
+
+    @FXML
+    private StackedAreaChart<Number, Number> areaChart;
+
+    public void initStage(Stage stage, Activity activity) {
+        this.stage = stage;
+        this.activity = activity;
+        XYChart.Series series = new XYChart.Series();
+        areaChart.getData().addAll(series);
+        areaChart.setCreateSymbols(false);
+        ObservableList<Chunk> chunks = activity.getChunks();
+        double distance = 0;
+        for(Chunk chunk : chunks){
+            series.getData().add(new XYChart.Data(distance, chunk.getAvgHeight()));
+            distance += chunk.getDistance()/1000;
+        }
+        
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
-    void initStage(Stage newStage) {
-         //To change body of generated methods, choose Tools | Templates.
+        /*
+        */
     }
-    
+
 }

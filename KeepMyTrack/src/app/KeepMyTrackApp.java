@@ -18,12 +18,10 @@ public class KeepMyTrackApp extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/presentation/view/MainView.fxml"));
         SplitPane root = (SplitPane) loader.load();
-        MainViewController mvc = loader.getController();
+        MainViewController mvc = loader.<MainViewController>getController();
         mvc.initStage(stage);
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(
-                getClass().getResource("/presentation/view/resources/mainStyles.css").toExternalForm()
-                        );
+        scene.getStylesheets().add(getClass().getResource("/presentation/view/resources/mainStyles.css").toExternalForm());
         stage.setScene(scene);
         stage.setTitle("KeepMyTrack");
         stage.show();

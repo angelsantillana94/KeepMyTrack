@@ -102,7 +102,13 @@
 }
 
 .labelSeleccionaActividad{
+    -fx-text-fill: #FBFBFB;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.labelDateTime{
     -fx-text-fill: #0A496A;
-    -fx-font-size: 20px;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
 }

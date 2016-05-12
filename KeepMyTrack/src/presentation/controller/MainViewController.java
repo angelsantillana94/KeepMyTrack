@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import static javafx.scene.input.KeyCode.M;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -89,13 +92,12 @@ public class MainViewController implements Initializable {
     }
     
     private void loadListeners() {
-        labelNameActivity.setText("¡Seleccione una actividad!");
-        resume.setVisible(false);
-        tableActivities.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        tableActivities.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Activity> obs, Activity oldSelection, Activity newSelection) -> {
             if (newSelection != null) {
+                Activity selectedActivity = tableActivities.getSelectionModel().getSelectedItem();
+                labelDateTime.setText("El "+selectedActivity.getStartTime().toLocalDate().format(DateTimeFormatter.ofPattern("d MMM uuuu"))+" a las "+selectedActivity.getStartTime().toLocalTime());
                 resume.setVisible(true);
-                Activity activity = tableActivities.getSelectionModel().getSelectedItem();
-                updateResumeWith(new ActivityGroup(activity));
+                updateResumeWith(new ActivityGroup(selectedActivity));
             }
         });
     }
@@ -122,7 +124,7 @@ public class MainViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         loadListeners();
         nameActivity.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getName().toUpperCase()));
-        dateActivity.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getEndTime().toLocalDate().toString()));
+        dateActivity.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getStartTime().toLocalDate().toString()));
         tableActivities.setItems(listActivities);
     }
     
@@ -142,6 +144,7 @@ public class MainViewController implements Initializable {
     
     @FXML
     private void showAltitude(ActionEvent event) {
+        Activity activity = tableActivities.getSelectionModel().getSelectedItem();
         try {
             Stage newStage = new Stage();
             newStage.setTitle("Perfil del recorrido");
@@ -149,8 +152,8 @@ public class MainViewController implements Initializable {
             AnchorPane root = (AnchorPane) loader.load();
             Scene scene = new Scene(root);
             newStage.setScene(scene);
-            AltitudeViewController avc = loader.getController();
-            avc.initStage(newStage);
+            AltitudeViewController controller = loader.<AltitudeViewController>getController();
+            controller.initStage(newStage,activity);  
             newStage.initModality(Modality.APPLICATION_MODAL);
             newStage.showAndWait();
         } catch (IOException e) {
