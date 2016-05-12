@@ -7,7 +7,11 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import jgpx.model.analysis.Chunk;
 import model.Activity;
@@ -26,17 +30,28 @@ public class AltitudeViewController implements Initializable {
 
     @FXML
     private AreaChart<Number, Number> areaChart;
+    @FXML
+    private HBox loadCircle;
+    @FXML
+    private RadioButton radioButonDistance;
+    @FXML
+    private RadioButton radioButonDuration;
+    @FXML
+    private ToggleGroup optionsXAxis;
+    @FXML
+    private NumberAxis labelX;
 
     public void initStage(Stage stage, Activity activity) {
         this.stage = stage;
         this.activity = activity;
         distanceSeries = new XYChart.Series();
         durationSeries = new XYChart.Series();
-        areaChart.getData().addAll(durationSeries);
+        areaChart.getData().addAll(distanceSeries);
         loadData();
     }
 
     private void loadData() {
+        loadChart();
         Task<Void> task = new Task<Void>() {
             ObservableList<Chunk> chunks = activity.getChunks();
             XYChart.Data[] distanceData = new XYChart.Data[chunks.size()];
@@ -60,16 +75,40 @@ public class AltitudeViewController implements Initializable {
             protected void succeeded() {
                 distanceSeries.getData().addAll((Object[]) distanceData);
                 durationSeries.getData().addAll((Object[]) durationData);
+                showChart();
             }
         };
         
         Thread th = new Thread(task);
         th.start();
     }
+    
+    private void loadChart(){
+        areaChart.setVisible(false);
+        loadCircle.setVisible(true);
+    }
+    
+    private void showChart(){
+        loadCircle.setVisible(false);
+        areaChart.setVisible(true);
+    }
+    
+    private void showDuration(){
+        areaChart.getData().remove(0, areaChart.getData().size());
+        labelX.setLabel("Tiempo (min)");
+        areaChart.getData().addAll(durationSeries);
+    }
+    
+    private void showDistance(){
+        areaChart.getData().remove(0, areaChart.getData().size());
+        labelX.setLabel("Distancia (Km)");
+        areaChart.getData().addAll(distanceSeries);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        radioButonDistance.setOnAction(event -> showDistance());
+        radioButonDuration.setOnAction(event -> showDuration());
     }
 
 }
