@@ -11,6 +11,9 @@
 **/nbactions.xml
 **/.nb-gradle/
 
+### Tracks ###
+Tracks/
+
 
 ### Java ###
 *.class
