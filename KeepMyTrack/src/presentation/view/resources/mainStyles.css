@@ -27,11 +27,12 @@
 
 .resumeValues{
     -fx-text-fill: #FBFBFB;
+    -fx-font: bold 22px "Arial";
 }
 
 .nameValues{
     -fx-text-fill: #0A496A;
-     -fx-font: bold 12px "Arial";
+    -fx-font: bold 12px "Arial";
 }
 
 .resumeBackground, .anchorPaneIzq {
@@ -101,7 +102,7 @@
 }
 
 .labelSeleccionaActividad{
-    -fx-text-fill: #FBFBFB;
-    -fx-font-size: 16px;
+    -fx-text-fill: #0A496A;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
