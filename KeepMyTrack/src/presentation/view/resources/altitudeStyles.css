@@ -1,10 +1,30 @@
-
 .altitudeBackground {
     -fx-background-color: #85D4F4;
 }
 
-.labelAltitude { 
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
+.chart-title {
+  -fx-text-fill: #FBFBFB;
+  -fx-font-size: 20px;
+  -fx-font-weight: bold;
+  -fx-text-transform: uppercase;
 }
 
+.axis{
+    -fx-text-fill: red;
+}
+
+.axis-label {
+  -fx-text-fill: #FBFBFB;
+  -fx-font-weight: bold;
+}
+
+.axis {  
+    -fx-tick-label-fill: #0A496A;
+    /* -fx-tick-length: 20;
+    -fx-minor-tick-length: 10; */
+}
+
+.labelAltitudeAltitude{
+    -fx-text-fill: #FBFBFB;
+    -fx-font-weight: bold;
+}

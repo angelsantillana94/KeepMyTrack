@@ -1,30 +1,3 @@
-/*
-.button {
-   -fx-background-color: #6B6B6C, #C7C8CA;
-   -fx-background-radius: 0%;
-   -fx-background-insets: 0, 1, 2;
-   -fx-font-family: "Helvetica";
-   -fx-text-fill: black;
-   -fx-font-size: 25px;
-}
-
-.button-op {
-   -fx-background-color: #6B6B6C, #F78D12;
-   -fx-background-radius: 0%;
-   -fx-background-insets: 0, 1, 2;
-   -fx-font-family: "Helvetica";
-   -fx-text-fill: #FEFEFE;
-   -fx-font-size: 25px;
-}
-
- #box{
- 	-fx-background-color: #6B6B6C, #202020;
- 	-fx-background-radius: 0%;
- 	-fx-font-family: "Helvetica";
-   -fx-text-fill: #FEFEFE;
-}
-*/
-
 .resumeValues{
     -fx-text-fill: #FBFBFB;
     -fx-font: bold 22px "Arial";
@@ -48,26 +21,39 @@
     -fx-background-color: #FBFBFB;
 }
 
-.tableColumn{
-    
-}
-
 .button{
     -fx-background-color: #F0AE05;
     -fx-text-fill: #985712;
     -fx-font: bold 14px "Arial";
+    -fx-effect: dropshadow( gaussian, rgba(0, 0, 0, 0.4), 5, 0.5, 0.0, 0.0 );
+}
+
+.button:hover {
+    -fx-background-color: #F0AE05;
+    -fx-text-fill: #FBFBFB;
 }
 
 .buttonAdd{
     -fx-background-color: #34C643;
     -fx-text-fill: #0B650D;
     -fx-font: bold 14px "Arial";
+    -fx-effect: dropshadow( gaussian, rgba(0, 0, 0, 0.4), 5, 0.5, 0.0, 0.0 );
+}
+.buttonAdd:hover {
+    -fx-background-color: #34C643;
+    -fx-text-fill: #FBFBFB;
 }
 
 .buttonDelete{
     -fx-background-color: #FB6159;
     -fx-text-fill: #7E0508;
     -fx-font: bold 14px "Arial";
+    -fx-effect: dropshadow( gaussian, rgba(0, 0, 0, 0.4), 5, 0.5, 0.0, 0.0 );
+}
+
+.buttonDelete:hover {
+    -fx-background-color: #FB6159;
+    -fx-text-fill: #FBFBFB;
 }
 
 .tab-pane .tab-header-area .tab-header-background {
@@ -102,7 +88,7 @@
 }
 
 .labelSeleccionaActividad{
-    -fx-text-fill: #FBFBFB;
+    -fx-text-fill: #0A496A;
     -fx-font-size: 24px;
     -fx-font-weight: bold;
 }
