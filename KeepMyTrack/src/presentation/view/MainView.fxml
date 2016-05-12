@@ -76,6 +76,7 @@
       </AnchorPane>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="resumeBackground">
          <children>
+
             <VBox alignment="CENTER" prefHeight="80.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                <children>
                   <Label fx:id="labelNameActivity" alignment="CENTER" styleClass="labelSeleccionaActividad" text="Selecciona una actividad" textAlignment="CENTER" wrapText="true">
@@ -86,7 +87,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="labelDateTime" text=" " wrapText="true" />
+                  <Label fx:id="labelDateTime" styleClass="labelDateTime" text=" " wrapText="true" />
                </children>
             </VBox>
             <GridPane fx:id="resume" alignment="CENTER" layoutX="12.0" layoutY="84.0" prefHeight="440.0" prefWidth="497.0" visible="false" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">

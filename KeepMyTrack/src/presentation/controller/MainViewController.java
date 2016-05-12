@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import static javafx.scene.input.KeyCode.M;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -89,10 +92,10 @@ public class MainViewController implements Initializable {
     }
     
     private void loadListeners() {
-        tableActivities.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        tableActivities.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Activity> obs, Activity oldSelection, Activity newSelection) -> {
             if (newSelection != null) {
                 Activity selectedActivity = tableActivities.getSelectionModel().getSelectedItem();
-                labelDateTime.setText(selectedActivity.getStartTime().toLocalTime()+" "+selectedActivity.getStartTime().toLocalDate());
+                labelDateTime.setText("El "+selectedActivity.getStartTime().toLocalDate().format(DateTimeFormatter.ofPattern("d MMM uuuu"))+" a las "+selectedActivity.getStartTime().toLocalTime());
                 resume.setVisible(true);
                 updateResumeWith(new ActivityGroup(selectedActivity));
             }

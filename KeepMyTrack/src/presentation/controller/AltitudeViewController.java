@@ -31,10 +31,11 @@ public class AltitudeViewController implements Initializable {
         this.activity = activity;
         XYChart.Series series = new XYChart.Series();
         areaChart.getData().addAll(series);
+        areaChart.setCreateSymbols(false);
         ObservableList<Chunk> chunks = activity.getChunks();
         double distance = 0;
         for(Chunk chunk : chunks){
-            series.getData().add(new XYChart.Data(distance, chunk.getFirstPoint().getElevation()));
+            series.getData().add(new XYChart.Data(distance, chunk.getAvgHeight()));
             distance += chunk.getDistance()/1000;
         }
         
