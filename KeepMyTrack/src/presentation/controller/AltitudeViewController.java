@@ -58,8 +58,8 @@ public class AltitudeViewController implements Initializable {
 
             @Override
             protected void succeeded() {
-                distanceSeries.getData().addAll(distanceData);
-                durationSeries.getData().addAll(durationData);
+                distanceSeries.getData().addAll((Object[]) distanceData);
+                durationSeries.getData().addAll((Object[]) durationData);
             }
         };
         
