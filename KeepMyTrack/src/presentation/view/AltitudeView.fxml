@@ -4,8 +4,11 @@
 <?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -13,9 +16,18 @@
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" styleClass="altitudeBackground" stylesheets="@resources/altitudeStyles.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.AltitudeViewController">
    <children>
-      <AreaChart fx:id="areaChart" createSymbols="false" layoutX="136.0" layoutY="65.0" legendVisible="false" stylesheets="@resources/altitudeStyles.css" title="Perfil del recorrido" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
+      <HBox fx:id="loadCircle" alignment="CENTER" layoutX="275.0" layoutY="168.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
+         <children>
+            <ProgressIndicator>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </ProgressIndicator>
+         </children>
+      </HBox>
+      <AreaChart fx:id="areaChart" createSymbols="false" layoutX="136.0" layoutY="65.0" legendVisible="false" stylesheets="@resources/altitudeStyles.css" title="Perfil del recorrido" visible="false" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
         <xAxis>
-          <NumberAxis label="Distancia (Km)" side="BOTTOM" />
+          <NumberAxis fx:id="labelX" label="Distancia (Km)" minorTickLength="4.0" side="BOTTOM" tickLabelGap="2.0" tickLength="5.0" />
         </xAxis>
         <yAxis>
           <NumberAxis label="Altura (m)" side="LEFT" />
@@ -31,12 +43,15 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <RadioButton mnemonicParsing="false" selected="true" styleClass="labelAltitudeAltitude" text="Distancia" textFill="#fbfbfb">
+                  <RadioButton fx:id="radioButonDistance" mnemonicParsing="false" selected="true" styleClass="labelAltitudeAltitude" text="Distancia" textFill="#fbfbfb">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="optionsXAxis" />
+                     </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" styleClass="labelAltitudeAltitude" text="Tiempo" textFill="#fbfbfb">
+                  <RadioButton fx:id="radioButonDuration" mnemonicParsing="false" styleClass="labelAltitudeAltitude" text="Tiempo" textFill="#fbfbfb" toggleGroup="$optionsXAxis">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>

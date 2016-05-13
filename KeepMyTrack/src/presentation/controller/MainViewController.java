@@ -90,6 +90,14 @@ public class MainViewController implements Initializable {
         this.stage = stage;
     }
     
+    private Stage createNewStage(String title, Scene scene){
+        Stage newStage = new Stage();
+        newStage.setTitle(title);
+        newStage.setScene(scene);
+        newStage.initModality(Modality.APPLICATION_MODAL);
+        return newStage;
+    }
+    
     private void loadListeners() {
         tableActivities.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Activity> obs, Activity oldSelection, Activity newSelection) -> {
             if (newSelection != null) {
@@ -145,16 +153,12 @@ public class MainViewController implements Initializable {
     private void showAltitude(ActionEvent event) {
         Activity activity = tableActivities.getSelectionModel().getSelectedItem();
         try {
-            Stage newStage = new Stage();
-            newStage.setTitle("Perfil del recorrido");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/presentation/view/AltitudeView.fxml"));
             AnchorPane root = (AnchorPane) loader.load();
             Scene scene = new Scene(root);
-            newStage.setScene(scene);
+            Stage newStage = createNewStage("Perfil del recorrido", scene);
             AltitudeViewController controller = loader.<AltitudeViewController>getController();
-            controller.initStage(newStage,activity);  
-            newStage.initModality(Modality.APPLICATION_MODAL);
-            newStage.showAndWait();
+            controller.initStage(newStage,activity);
         } catch (IOException e) {
             e.printStackTrace();
         }
