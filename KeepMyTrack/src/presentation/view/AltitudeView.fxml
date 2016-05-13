@@ -25,7 +25,7 @@
             </ProgressIndicator>
          </children>
       </HBox>
-      <AreaChart fx:id="areaChart" createSymbols="false" layoutX="136.0" layoutY="65.0" legendVisible="false" stylesheets="@resources/altitudeStyles.css" title="Perfil del recorrido" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
+      <AreaChart fx:id="areaChart" createSymbols="false" layoutX="136.0" layoutY="65.0" legendVisible="false" stylesheets="@resources/altitudeStyles.css" title="Perfil del recorrido" visible="false" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
         <xAxis>
           <NumberAxis fx:id="labelX" label="Distancia (Km)" minorTickLength="4.0" side="BOTTOM" tickLabelGap="2.0" tickLength="5.0" />
         </xAxis>

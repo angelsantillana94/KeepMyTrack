@@ -12,6 +12,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import jgpx.model.analysis.Chunk;
 import model.Activity;
@@ -21,7 +22,7 @@ import model.Activity;
  *
  * @author angelsantillana
  */
-public class AltitudeViewController implements Initializable {
+public class AltitudeViewController implements Initializable{ 
 
     private Stage stage;
     private Activity activity;
@@ -47,6 +48,7 @@ public class AltitudeViewController implements Initializable {
         distanceSeries = new XYChart.Series();
         durationSeries = new XYChart.Series();
         areaChart.getData().addAll(distanceSeries);
+        stage.show();
         loadData();
     }
 
@@ -61,12 +63,14 @@ public class AltitudeViewController implements Initializable {
             protected Void call() throws Exception {
                 double distance = 0;
                 double duration = 0;
+                double height = chunks.get(0).getFirstPoint().getElevation();
                 for (int i = 0; i < chunks.size(); i++) {
                     Chunk chunk = chunks.get(i);
-                    distanceData[i] = new XYChart.Data(distance, chunk.getAvgHeight());
+                    distanceData[i] = new XYChart.Data(distance, height);
                     distance += chunk.getDistance() / 1000.0;
-                    durationData[i] = new XYChart.Data(duration, chunk.getAvgHeight());
+                    durationData[i] = new XYChart.Data(duration, height);
                     duration += chunk.getDuration().getSeconds() / 60.0;
+                    height += chunk.getLastPoint().getElevation() - chunk.getFirstPoint().getElevation();
                 }
                 return null;
             }
