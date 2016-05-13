@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
  * @author angelsantillana
  */
 public class ZonesViewController implements Initializable {
-
+    
     /**
      * Initializes the controller class.
      */
@@ -23,5 +23,5 @@ public class ZonesViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+  
 }

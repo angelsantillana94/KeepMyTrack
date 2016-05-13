@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.StackedAreaChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
@@ -13,18 +13,18 @@
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" styleClass="altitudeBackground" stylesheets="@resources/altitudeStyles.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.AltitudeViewController">
    <children>
-      <StackedAreaChart fx:id="areaChart" layoutX="76.0" layoutY="56.0" legendVisible="false" stylesheets="@resources/altitudeStyles.css" title="Perfil del recorrido" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
+      <AreaChart fx:id="areaChart" createSymbols="false" layoutX="136.0" layoutY="65.0" legendVisible="false" stylesheets="@resources/altitudeStyles.css" title="Perfil del recorrido" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
         <xAxis>
           <NumberAxis label="Distancia (Km)" side="BOTTOM" />
         </xAxis>
         <yAxis>
           <NumberAxis label="Altura (m)" side="LEFT" />
         </yAxis>
-      </StackedAreaChart>
+      </AreaChart>
       <Separator layoutX="118.0" layoutY="418.0" prefWidth="200.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
       <HBox alignment="CENTER" prefHeight="100.0" styleClass="altitudeBackground" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="100.0" styleClass="labelAltitude">
+            <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="110.0" styleClass="labelAltitude">
                <children>
                   <Label styleClass="labelAltitudeAltitude" text="Eje X" textFill="#fbfbfb" underline="true">
                      <font>
