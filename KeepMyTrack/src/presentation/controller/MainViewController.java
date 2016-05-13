@@ -168,6 +168,17 @@ public class MainViewController implements Initializable {
     
     @FXML
     private void showStatistics(ActionEvent event) {
+        Activity activity = tableActivities.getSelectionModel().getSelectedItem();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/presentation/view/StatisticsView.fxml"));
+            AnchorPane root = (AnchorPane) loader.load();
+            Scene scene = new Scene(root);
+            Stage newStage = createNewStage("Estadísticas del recorrido", scene);
+            StatisticsViewController controller = loader.<StatisticsViewController>getController();
+            controller.initStage(newStage,activity);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     @FXML

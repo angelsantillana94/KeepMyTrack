@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -15,9 +17,18 @@
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.StatisticsViewController">
    <children>
-      <LineChart title="Estadísticas" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
+      <HBox fx:id="loadCircle" alignment="CENTER" layoutX="285.0" layoutY="178.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
+         <children>
+            <ProgressIndicator>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </ProgressIndicator>
+         </children>
+      </HBox>
+      <LineChart fx:id="lineChart" animated="false" createSymbols="false" title="Estadísticas del recorrido" visible="false" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <NumberAxis fx:id="labelX" label="Distancia (Km)" side="BOTTOM" />
         </xAxis>
         <yAxis>
           <NumberAxis side="LEFT" />
@@ -33,17 +44,17 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <CheckBox mnemonicParsing="false" text="Frecuencia cardíaca">
+                  <CheckBox fx:id="checkBoxHeartrate" mnemonicParsing="false" text="Frecuencia cardíaca">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" selected="true" text="Velocidad">
+                  <CheckBox fx:id="checkBoxSpeed" mnemonicParsing="false" selected="true" text="Velocidad">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Cadencia">
+                  <CheckBox fx:id="checkBoxCadence" mnemonicParsing="false" text="Cadencia">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
@@ -65,12 +76,15 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <RadioButton mnemonicParsing="false" selected="true" text="Distancia">
+                  <RadioButton fx:id="radioButonDistance" mnemonicParsing="false" selected="true" text="Distancia">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="optionsXAxis" />
+                     </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="Tiempo">
+                  <RadioButton fx:id="radioButonDuration" mnemonicParsing="false" text="Tiempo" toggleGroup="$optionsXAxis">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
