@@ -71,6 +71,7 @@ public class AltitudeViewController implements Initializable{
                     durationData[i] = new XYChart.Data(duration, height);
                     duration += chunk.getDuration().getSeconds() / 60.0;
                     height += chunk.getLastPoint().getElevation() - chunk.getFirstPoint().getElevation();
+                    
                 }
                 return null;
             }

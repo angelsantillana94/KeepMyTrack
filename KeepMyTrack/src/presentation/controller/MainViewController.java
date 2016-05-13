@@ -6,6 +6,7 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -20,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -170,6 +172,27 @@ public class MainViewController implements Initializable {
     
     @FXML
     private void showZones(ActionEvent event) {
+        TextInputDialog dialog = new TextInputDialog("23");
+        dialog.setTitle("Edad del deportista");
+        dialog.setHeaderText("Calcular pulsaciones máximas a partir de su edad");
+        dialog.setContentText("Introduzca su edad: ");
+
+        // Traditional way to get the response value.
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            Activity activity = tableActivities.getSelectionModel().getSelectedItem();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/presentation/view/ZonesView.fxml"));
+                AnchorPane root = (AnchorPane) loader.load();
+                Scene scene = new Scene(root);
+                Stage newStage = createNewStage("Grafico de esfuerzo cardíaco", scene);
+                ZonesViewController controller = loader.<ZonesViewController>getController();
+                controller.initStage(newStage,activity,result);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        
+        }
     }
     
 }
