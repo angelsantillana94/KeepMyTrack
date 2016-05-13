@@ -12,7 +12,6 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import jgpx.model.analysis.Chunk;
 import model.Activity;
@@ -49,6 +48,7 @@ public class AltitudeViewController implements Initializable{
         durationSeries = new XYChart.Series();
         areaChart.getData().addAll(distanceSeries);
         stage.show();
+        loadChart();
         loadData();
     }
 
