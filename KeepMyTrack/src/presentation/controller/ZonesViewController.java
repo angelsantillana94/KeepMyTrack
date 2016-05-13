@@ -63,7 +63,7 @@ public class ZonesViewController implements Initializable {
             protected Void call() throws Exception {
                 for (int i = 0; i < chunks.size(); i++) {
                     Chunk chunk = chunks.get(i);
-                    System.out.println(chunk.getAvgHeartRate());
+                    //System.out.println(chunk.getAvgHeartRate());
                     if(chunk.getAvgHeartRate() >  ppm*0.9){
                         z5 += 1;
                     }else if(chunk.getAvgHeartRate() >=  ppm*0.8 && chunk.getAvgHeartRate() <=  ppm*0.9){
