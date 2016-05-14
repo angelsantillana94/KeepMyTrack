@@ -65,18 +65,17 @@ public class ZonesViewController implements Initializable {
                     Chunk chunk = chunks.get(i);
                     //System.out.println(chunk.getAvgHeartRate());
                     if(chunk.getAvgHeartRate() >  ppm*0.9){
-                        z5 += 1;
+                        z5++;
                     }else if(chunk.getAvgHeartRate() >=  ppm*0.8 && chunk.getAvgHeartRate() <=  ppm*0.9){
-                        z4 += 1;
+                        z4++;
                     }else if(chunk.getAvgHeartRate() >=  ppm*0.7 && chunk.getAvgHeartRate() <=  ppm*0.8){
-                        z3 += 1;
+                        z3++;
                     }else if(chunk.getAvgHeartRate() >=  ppm*0.6 && chunk.getAvgHeartRate() <=  ppm*0.7){
-                        z2 += 1;
+                        z2++;
                     }else if(chunk.getAvgHeartRate() <  ppm*0.6){
-                        z1 += 1;
+                        z1++;
                     }
                 }
-                //System.out.println("Termina FOR "+pieChartData);
                 return null;
             }
 
@@ -92,8 +91,8 @@ public class ZonesViewController implements Initializable {
                 );
                 //System.out.println("Succeded!: "+pieChartData);
                 //System.out.println(" Zona1:"+z1+ " Zona2:"+z2+" Zona 3:"+z3+ " Zona4:"+z4+" Zona5:"+z5);
-                pieChart.setData(pieChartData);
                 pieChart.setTitle("Zonas Frecuencia Cardiaca");
+                pieChart.setData(pieChartData);
                 showChart();
             }
         };
