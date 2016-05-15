@@ -10,9 +10,15 @@
 }
 
 .labelZones{
+    -fx-text-fill: #0A496A;
+    -fx-font-weight: bold;
+}
+
+.labelZonesValues{
     -fx-text-fill: #FBFBFB;
     -fx-font-weight: bold;
 }
+
 /* flecha y punto */
 .chart-pie-label-line {
     -fx-stroke: #0A496A;

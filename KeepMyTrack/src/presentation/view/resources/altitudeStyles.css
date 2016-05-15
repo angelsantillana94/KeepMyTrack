@@ -18,6 +18,11 @@
     -fx-tick-label-fill: #0A496A;
 }
 
+.labelAltitudeTitle{
+    -fx-text-fill: #0A496A;
+    -fx-font-weight: bold;
+}
+
 .labelAltitude{
     -fx-text-fill: #FBFBFB;
     -fx-font-weight: bold;

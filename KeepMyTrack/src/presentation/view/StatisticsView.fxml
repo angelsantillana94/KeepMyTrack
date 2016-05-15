@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.StatisticsViewController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" styleClass="statisticsBackground" stylesheets="@resources/StatisticsStyles.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.StatisticsViewController">
    <children>
       <HBox fx:id="loadCircle" alignment="CENTER" layoutX="285.0" layoutY="178.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
          <children>
@@ -35,26 +35,26 @@
         </yAxis>
       </LineChart>
       <Separator layoutX="118.0" layoutY="418.0" prefWidth="200.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-      <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="110.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="110.0" styleClass="statisticsBackground" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <VBox prefHeight="100.0" prefWidth="170.0">
                <children>
-                  <Label text="Eje Y" underline="true">
+                  <Label styleClass="labelStatisticsTitle" text="Eje Y" underline="true">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <CheckBox fx:id="checkBoxHeartrate" mnemonicParsing="false" text="Frecuencia cardíaca">
+                  <CheckBox fx:id="checkBoxHeartrate" mnemonicParsing="false" styleClass="labelStatistics" text="Frecuencia cardíaca">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox fx:id="checkBoxSpeed" mnemonicParsing="false" selected="true" text="Velocidad">
+                  <CheckBox fx:id="checkBoxSpeed" mnemonicParsing="false" selected="true" styleClass="labelStatistics" text="Velocidad">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox fx:id="checkBoxCadence" mnemonicParsing="false" text="Cadencia">
+                  <CheckBox fx:id="checkBoxCadence" mnemonicParsing="false" styleClass="labelStatistics" text="Cadencia">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
@@ -71,12 +71,12 @@
             </Separator>
             <VBox prefHeight="100.0" prefWidth="170.0">
                <children>
-                  <Label text="Eje X" underline="true">
+                  <Label styleClass="labelStatisticsTitle" text="Eje X" underline="true">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <RadioButton fx:id="radioButonDistance" mnemonicParsing="false" selected="true" text="Distancia">
+                  <RadioButton fx:id="radioButonDistance" mnemonicParsing="false" selected="true" styleClass="labelStatistics" text="Distancia">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
@@ -84,7 +84,7 @@
                         <ToggleGroup fx:id="optionsXAxis" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="radioButonDuration" mnemonicParsing="false" text="Tiempo" toggleGroup="$optionsXAxis">
+                  <RadioButton fx:id="radioButonDuration" mnemonicParsing="false" styleClass="labelStatistics" text="Tiempo" toggleGroup="$optionsXAxis">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>

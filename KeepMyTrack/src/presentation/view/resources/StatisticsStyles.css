@@ -1,16 +1,12 @@
-.altitudeBackground {
+.statisticsBackground {
     -fx-background-color: #85D4F4;
 }
 
 .chart-title {
-  -fx-text-fill: #FBFBFB;
+  -fx-text-fill: #0A496A;
   -fx-font-size: 20px;
   -fx-font-weight: bold;
   -fx-text-transform: uppercase;
-}
-
-.axis{
-    -fx-text-fill: red;
 }
 
 .axis-label {
@@ -24,7 +20,12 @@
     -fx-minor-tick-length: 10; */
 }
 
-.labelAltitudeAltitude{
+.labelStatisticsTitle{
+    -fx-text-fill: #0A496A;
+    -fx-font-weight: bold;
+}
+
+.labelStatistics{
     -fx-text-fill: #FBFBFB;
     -fx-font-weight: bold;
 }

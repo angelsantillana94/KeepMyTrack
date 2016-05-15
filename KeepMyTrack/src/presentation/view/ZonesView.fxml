@@ -23,7 +23,7 @@
             </ProgressIndicator>
          </children>
       </HBox>
-      <PieChart fx:id="pieChart" layoutX="86.0" layoutY="14.0" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
+      <PieChart fx:id="pieChart" layoutX="86.0" layoutY="14.0" legendVisible="false" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
       <Separator layoutX="118.0" layoutY="418.0" prefWidth="200.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
       <GridPane layoutX="188.0" layoutY="427.0" maxHeight="100.0" minHeight="-Infinity" prefHeight="100.0" styleClass="zonesBackground" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <columnConstraints>
@@ -60,26 +60,26 @@
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin></Label>
-            <Label styleClass="labelZones" text="&lt; 60% FC máx." GridPane.columnIndex="2">
+            <Label styleClass="labelZonesValues" text="&lt; 60% FC máx." GridPane.columnIndex="2">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin></Label>
-            <Label styleClass="labelZones" text="&gt; 60% - 70%" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label styleClass="labelZonesValues" text="&gt; 60% - 70%" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>
             </Label>
-            <Label styleClass="labelZones" text="&gt; 70% - 80%" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Label styleClass="labelZonesValues" text="&gt; 70% - 80%" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>
             </Label>
-            <Label styleClass="labelZones" text="&gt; 80% - 90%" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Label styleClass="labelZonesValues" text="&gt; 80% - 90%" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>
             </Label>
-            <Label styleClass="labelZones" text="&gt; 90% - 100%" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Label styleClass="labelZonesValues" text="&gt; 90% - 100%" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin></Label>
