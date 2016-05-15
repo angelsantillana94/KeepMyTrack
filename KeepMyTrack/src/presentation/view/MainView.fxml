@@ -232,7 +232,7 @@
                <children>
                   <ImageView fitHeight="240.0" fitWidth="238.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@resources/img/background2.png" />
+                        <Image url="@resources/img/img-background.png" />
                      </image>
                      <VBox.margin>
                         <Insets />
