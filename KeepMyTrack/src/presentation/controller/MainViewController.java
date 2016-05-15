@@ -17,13 +17,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -87,6 +91,8 @@ public class MainViewController implements Initializable {
     private Label labelDateTime;
     @FXML
     private GridPane resume;
+    @FXML
+    private VBox imgBackground;
     
     public void initStage(Stage stage) {
         this.stage = stage;
@@ -101,10 +107,13 @@ public class MainViewController implements Initializable {
     }
     
     private void loadListeners() {
+        btnDel.setDisable(true);
         tableActivities.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Activity> obs, Activity oldSelection, Activity newSelection) -> {
             if (newSelection != null) {
+                btnDel.setDisable(false);
                 Activity selectedActivity = tableActivities.getSelectionModel().getSelectedItem();
                 labelDateTime.setText("El "+selectedActivity.getStartTime().toLocalDate().format(DateTimeFormatter.ofPattern("d MMM uuuu"))+" a las "+selectedActivity.getStartTime().toLocalTime());
+                imgBackground.setVisible(false);
                 resume.setVisible(true);
                 updateResumeWith(new ActivityGroup(selectedActivity));
             }
@@ -149,6 +158,25 @@ public class MainViewController implements Initializable {
     
     @FXML
     private void deleteActivity(ActionEvent event) {
+        int index = tableActivities.getSelectionModel().getSelectedIndex();
+        MsgWindow msgPrint = new MsgWindow(
+                Alert.AlertType.WARNING, "ELIMINAR", null,
+                "¿Desea eliminar la actividad " + tableActivities.getItems().get(index).getName() + " ?"
+        );
+        ButtonType buttonTypeNo = new ButtonType("NO", ButtonBar.ButtonData.NO);
+        ButtonType buttonTypeYes = new ButtonType("SI", ButtonBar.ButtonData.YES);
+        msgPrint.getButtonTypes().setAll(buttonTypeNo,buttonTypeYes);
+        Optional<ButtonType> result = msgPrint.showAndWait();
+        if (result.isPresent() && result.get() == buttonTypeYes){
+            tableActivities.getItems().remove(index);
+            if(tableActivities.getItems().isEmpty()){
+                btnDel.setDisable(true);
+                resume.setVisible(false);
+                labelDateTime.setVisible(false);
+                imgBackground.setVisible(true);
+                labelNameActivity.setText("Selecciona una actividad");
+            }
+        }
     }
     
     @FXML
