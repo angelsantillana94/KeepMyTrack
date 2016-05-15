@@ -3,10 +3,14 @@
 }
 
 .chart-title {
-  -fx-text-fill: #0A496A;
+  -fx-text-fill: #FBFBFB;
   -fx-font-size: 20px;
   -fx-font-weight: bold;
   -fx-text-transform: uppercase;
+}
+
+.axis{
+    -fx-text-fill: red;
 }
 
 .axis-label {
@@ -16,9 +20,11 @@
 
 .axis {  
     -fx-tick-label-fill: #0A496A;
+    /* -fx-tick-length: 20;
+    -fx-minor-tick-length: 10; */
 }
 
-.labelAltitude{
+.labelAltitudeAltitude{
     -fx-text-fill: #FBFBFB;
     -fx-font-weight: bold;
 }

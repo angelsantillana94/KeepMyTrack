@@ -1,0 +1,34 @@
+.zonesBackground {
+    -fx-background-color: #85D4F4;
+}
+
+.chart-title {
+  -fx-text-fill: #0A496A;
+  -fx-font-size: 20px;
+  -fx-font-weight: bold;
+  -fx-text-transform: uppercase;
+}
+
+.labelZones{
+    -fx-text-fill: #FBFBFB;
+    -fx-font-weight: bold;
+}
+/* flecha y punto */
+.chart-pie-label-line {
+    -fx-stroke: #0A496A;
+    -fx-fill: #FBFBFB;
+}
+
+/* color letra de las flecha */
+.chart-pie-label {
+    -fx-fill: #FBFBFB;
+    -fx-font-weight: bold;
+}
+
+/* leyenda debajo tarta */
+.chart-legend {
+   -fx-background-color: #FBFBFB;
+   -fx-text-fill: #0A496A;
+   -fx-fill: #FBFBFB;
+   /*-fx-font-weight: bold;*/
+}
