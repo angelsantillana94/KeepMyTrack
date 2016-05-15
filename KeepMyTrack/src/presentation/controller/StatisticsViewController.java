@@ -63,7 +63,6 @@ public class StatisticsViewController implements Initializable {
         this.initSeries();
         lineChart.getData().addAll(distanceSeries[SPEED]);
         stage.show();
-        loadChart();
         loadData();
     }
     

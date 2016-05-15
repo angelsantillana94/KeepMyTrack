@@ -21,7 +21,7 @@ import model.Activity;
  *
  * @author angelsantillana
  */
-public class AltitudeViewController implements Initializable{ 
+public class AltitudeViewController implements Initializable {
 
     private Stage stage;
     private Activity activity;
@@ -71,7 +71,6 @@ public class AltitudeViewController implements Initializable{
                     durationData[i] = new XYChart.Data(duration, height);
                     duration += chunk.getDuration().getSeconds() / 60.0;
                     height += chunk.getLastPoint().getElevation() - chunk.getFirstPoint().getElevation();
-                    
                 }
                 return null;
             }
@@ -83,28 +82,28 @@ public class AltitudeViewController implements Initializable{
                 showChart();
             }
         };
-        
+
         Thread th = new Thread(task);
         th.start();
     }
-    
-    private void loadChart(){
+
+    private void loadChart() {
         areaChart.setVisible(false);
         loadCircle.setVisible(true);
     }
-    
-    private void showChart(){
+
+    private void showChart() {
         loadCircle.setVisible(false);
         areaChart.setVisible(true);
     }
-    
-    private void showDuration(){
+
+    private void showDuration() {
         areaChart.getData().remove(0, areaChart.getData().size());
         labelX.setLabel("Tiempo (min)");
         areaChart.getData().addAll(durationSeries);
     }
-    
-    private void showDistance(){
+
+    private void showDistance() {
         areaChart.getData().remove(0, areaChart.getData().size());
         labelX.setLabel("Distancia (Km)");
         areaChart.getData().addAll(distanceSeries);
