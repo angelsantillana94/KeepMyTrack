@@ -1,6 +1,7 @@
 package presentation.controller;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -68,12 +69,14 @@ public class ZonesViewController implements Initializable {
 
             @Override
             protected void succeeded() {
+                DecimalFormat round = (DecimalFormat) DecimalFormat.getInstance();
+                round.applyPattern("#.##");
                 ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                        new PieChart.Data("Z1", z1),
-                        new PieChart.Data("Z2", z2),
-                        new PieChart.Data("Z3", z3),
-                        new PieChart.Data("Z4", z4),
-                        new PieChart.Data("Z5", z5)
+                        new PieChart.Data("Z1 Recuperación - "+round.format((double) z1/chunks.size() * 100)+"%", z1),
+                        new PieChart.Data("Z2 Fondo - "+round.format((double) z2/chunks.size() * 100)+"%", z2),
+                        new PieChart.Data("Z3 Tempo - "+round.format((double) z3/chunks.size() * 100)+"%", z3),
+                        new PieChart.Data("Z4 Umbral - "+round.format((double) z4/chunks.size() * 100)+"%", z4),
+                        new PieChart.Data("Z5 Anaeróbico - "+round.format((double) z5/chunks.size() * 100)+"%", z5)
                 );
                 pieChart.setTitle("Zonas frecuencia cardiaca");
                 pieChart.setData(pieChartData);

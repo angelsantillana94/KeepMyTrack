@@ -1,4 +1,4 @@
-.altitudeBackground {
+.statisticsBackground {
     -fx-background-color: #85D4F4;
 }
 
@@ -16,14 +16,16 @@
 
 .axis {  
     -fx-tick-label-fill: #0A496A;
+    /* -fx-tick-length: 20;
+    -fx-minor-tick-length: 10; */
 }
 
-.labelAltitudeTitle{
+.labelStatisticsTitle{
     -fx-text-fill: #0A496A;
     -fx-font-weight: bold;
 }
 
-.labelAltitude{
+.labelStatistics{
     -fx-text-fill: #FBFBFB;
     -fx-font-weight: bold;
 }
