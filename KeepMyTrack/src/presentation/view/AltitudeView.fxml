@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" styleClass="altitudeBackground" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.AltitudeViewController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" styleClass="altitudeBackground" stylesheets="@resources/altitudeStyles.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.AltitudeViewController">
    <children>
       <HBox fx:id="loadCircle" alignment="CENTER" layoutX="275.0" layoutY="168.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
          <children>
@@ -26,7 +26,7 @@
             </ProgressIndicator>
          </children>
       </HBox>
-      <AreaChart fx:id="areaChart" createSymbols="false" layoutX="136.0" layoutY="65.0" legendVisible="false" stylesheets="@resources/altitudeStyles.css" title="Perfil del recorrido" visible="false" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
+      <AreaChart fx:id="areaChart" createSymbols="false" layoutX="136.0" layoutY="65.0" legendVisible="false" title="Perfil del recorrido" visible="false" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
         <xAxis>
           <NumberAxis fx:id="labelX" label="Distancia (Km)" minorTickLength="4.0" side="BOTTOM" tickLabelGap="2.0" tickLength="5.0" />
         </xAxis>
@@ -62,8 +62,4 @@
          </children>
       </HBox>
    </children>
-   <stylesheets>
-      <URL value="@resources/altitudeStyles.css" />
-      <URL value="@resources/AltitudeStyles.css" />
-   </stylesheets>
 </AnchorPane>

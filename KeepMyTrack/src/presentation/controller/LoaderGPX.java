@@ -14,6 +14,7 @@ import jgpx.model.gpx.Track;
 import jgpx.model.jaxb.GpxType;
 import jgpx.model.jaxb.TrackPointExtensionT;
 import model.Activity;
+import model.ActivityGroup;
 
 /**
  *
@@ -24,12 +25,14 @@ public class LoaderGPX extends Task<TrackData> {
     private final File file;
     private final Stage stage;
     private ObservableList<Activity> listActivities;
+    private ObservableList<ActivityGroup> listDiary;
     private Activity activity;
 
-    public LoaderGPX(File file, Stage stage, ObservableList<Activity> listActivities) {
+    public LoaderGPX(File file, Stage stage, ObservableList<Activity> listActivities, ObservableList<ActivityGroup> listDiary) {
         this.file = file;
         this.stage = stage;
         this.listActivities = listActivities;
+        this.listDiary = listDiary;
     }
 
     public void initTask() {
@@ -60,7 +63,10 @@ public class LoaderGPX extends Task<TrackData> {
     protected void succeeded() {
         super.succeeded();
         listActivities.add(activity);
+        listDiary.add(new ActivityGroup(activity));
         Platform.runLater(() -> stage.getScene().setCursor(Cursor.DEFAULT));
     }
 
+    
+    
 }

@@ -43,6 +43,7 @@ import model.ActivityGroup;
 public class MainViewController implements Initializable {
     
     private final ObservableList<Activity> listActivities = FXCollections.observableArrayList(new ArrayList<Activity>());
+    private final ObservableList<ActivityGroup> listDiary = FXCollections.observableArrayList(new ArrayList<ActivityGroup>());
     private Stage stage;
     
     @FXML
@@ -55,6 +56,12 @@ public class MainViewController implements Initializable {
     private TableColumn<Activity, String> nameActivity;
     @FXML
     private TableColumn<Activity, String> dateActivity;
+    @FXML
+    private TableView<ActivityGroup> tableDiary;
+    @FXML
+    private TableColumn<ActivityGroup, String> nameDiary;
+    @FXML
+    private TableColumn<ActivityGroup, Integer> nDiary;
     @FXML
     private Label distance;
     @FXML
@@ -93,6 +100,8 @@ public class MainViewController implements Initializable {
     private GridPane resume;
     @FXML
     private VBox imgBackground;
+    @FXML
+    private Button btnStatisticsGroup;
     
     public void initStage(Stage stage) {
         this.stage = stage;
@@ -111,6 +120,7 @@ public class MainViewController implements Initializable {
         tableActivities.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Activity> obs, Activity oldSelection, Activity newSelection) -> {
             if (newSelection != null) {
                 btnDel.setDisable(false);
+                showActivityButtons();
                 Activity selectedActivity = tableActivities.getSelectionModel().getSelectedItem();
                 labelDateTime.setText("El "+selectedActivity.getStartTime().toLocalDate().format(DateTimeFormatter.ofPattern("d MMM uuuu"))+" a las "+selectedActivity.getStartTime().toLocalTime());
                 imgBackground.setVisible(false);
@@ -118,6 +128,31 @@ public class MainViewController implements Initializable {
                 updateResumeWith(new ActivityGroup(selectedActivity));
             }
         });
+        tableDiary.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends ActivityGroup> obs, ActivityGroup oldSelection, ActivityGroup newSelection) -> {
+            if (newSelection != null) {
+                btnDel.setDisable(true);
+                showActivityGroupButtons();
+                ActivityGroup selectedActivityGroup = tableDiary.getSelectionModel().getSelectedItem();
+                labelDateTime.setText("Número de actividades: "+selectedActivityGroup.getListActivities().size());
+                imgBackground.setVisible(false);
+                resume.setVisible(true);
+                updateResumeWith(selectedActivityGroup);
+            }
+        });
+    }
+    
+    private void showActivityGroupButtons(){
+        btnStatisticsGroup.setVisible(true);
+        btnStatistics.setVisible(false);
+        btnAltitude.setVisible(false);
+        btnZones.setVisible(false);
+    }
+    
+    private void showActivityButtons(){
+        btnStatisticsGroup.setVisible(false);
+        btnStatistics.setVisible(true);
+        btnAltitude.setVisible(true);
+        btnZones.setVisible(true);
     }
     
     private void updateResumeWith(ActivityGroup activityGroup) {
@@ -144,6 +179,9 @@ public class MainViewController implements Initializable {
         nameActivity.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getName().toUpperCase()));
         dateActivity.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getStartTime().toLocalDate().toString()));
         tableActivities.setItems(listActivities);
+        nameDiary.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getName().toUpperCase()));
+        nDiary.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getListActivities().size()));
+        tableDiary.setItems(listDiary);
     }
     
     @FXML
@@ -153,7 +191,7 @@ public class MainViewController implements Initializable {
         if (file == null) {
             return;
         }
-        new LoaderGPX(file, stage, listActivities).initTask();
+        new LoaderGPX(file, stage, listActivities, listDiary).initTask();
     }
     
     @FXML
@@ -161,7 +199,7 @@ public class MainViewController implements Initializable {
         int index = tableActivities.getSelectionModel().getSelectedIndex();
         MsgWindow msgPrint = new MsgWindow(
                 Alert.AlertType.WARNING, "ELIMINAR", null,
-                "¿Desea eliminar la actividad " + tableActivities.getItems().get(index).getName() + " ?"
+                "¿Desea eliminar la actividad " + tableActivities.getItems().get(index).getName() + "?"
         );
         ButtonType buttonTypeNo = new ButtonType("NO", ButtonBar.ButtonData.NO);
         ButtonType buttonTypeYes = new ButtonType("SI", ButtonBar.ButtonData.YES);
@@ -215,8 +253,6 @@ public class MainViewController implements Initializable {
         dialog.setTitle("Edad del deportista");
         dialog.setHeaderText("Calcular pulsaciones máximas a partir de su edad");
         dialog.setContentText("Introduzca su edad: ");
-
-        // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
             Activity activity = tableActivities.getSelectionModel().getSelectedItem();
@@ -230,8 +266,11 @@ public class MainViewController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        
         }
     }
-    
+
+    @FXML
+    private void showStatisticsGroup(ActionEvent event) {
+        
+    }
 }

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" styleClass="statisticsBackground" stylesheets="@resources/StatisticsStyles.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.StatisticsViewController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="750.0" styleClass="statisticsBackground" stylesheets="@resources/statisticsStyles.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.StatisticsViewController">
    <children>
       <HBox fx:id="loadCircle" alignment="CENTER" layoutX="285.0" layoutY="178.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
          <children>
