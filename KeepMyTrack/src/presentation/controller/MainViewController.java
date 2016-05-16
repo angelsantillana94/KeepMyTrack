@@ -187,6 +187,10 @@ public class MainViewController implements Initializable {
     @FXML
     private void addActivity(ActionEvent event) throws JAXBException {
         FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("gpx", "*.gpx"),
+                new FileChooser.ExtensionFilter("All files", "*.*")
+        );
         File file = fileChooser.showOpenDialog(stage);
         if (file == null) {
             return;
